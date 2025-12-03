@@ -216,6 +216,42 @@
 	opacity: 1; 
 }
 
+.counter-text .group {
+	position: relative;
+
+}
+
+.group::after {
+	text-align: center;
+	font-size: 0.8rem;
+	position: absolute;
+	bottom: -2rem;
+	left: 50%;
+	transform: translateX(-50%);
+	color: var(--color-white);
+	opacity: 0.8;
+}
+@media screen and (max-width:768px) {
+	.group::after {
+		bottom: -1.5rem;
+		font-size: 0.6rem;
+	}
+}
+
+.group.days::after {
+  	content: 'DAYS';
+}
+.group.hours::after {
+  	content: 'HOURS';
+}.group.minutes::after {
+  	content: 'MINUTES';
+}
+.group.seconds::after {
+  	content: 'SECONDS';
+}
+.group.centis::after {
+  	content: 'MS';
+}
 
 .copy-container {
   	align-self: stretch;
