@@ -1,0 +1,202 @@
+/* popup.simplified.css
+   Simplified and consolidated version of `popup.css`.
+   - Combined repeated selectors
+   - Preserved step-specific overrides where necessary
+   - Kept popup overlay/step transitions unchanged
+   Review and replace `popup.css` when ready.
+*/
+
+/* Popup overlay + step transition rules (kept as-is) */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(113, 113, 113, 0.0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, background-color 180ms ease;
+  z-index: 90;
+}
+.popup-overlay.open {
+  opacity: 1;
+  background-color: rgba(113, 113, 113, 0.3);
+  pointer-events: auto;
+}
+
+.popup-step {
+  max-width: 90rem;
+  width: 100%;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events: none;
+  z-index: 100; /* ensure inner popup content appears above overlay dim */
+}
+.popup-step.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Base styles shared across popup steps */
+.contact-pop-up-step-1,
+.contact-pop-up-step-2,
+.contact-pop-up-step-3,
+.contact-pop-up-complete {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: var(--fs-16);
+  color: var(--color-black);
+  font-family: var(--font-dm-sans);
+}
+
+/* Step-specific tweaks */
+.contact-pop-up-step-1 {
+  backdrop-filter: blur(4px);
+  background-color: var(--color-gray-300);
+  padding: 7rem var(--padding-64);
+  justify-content: center;
+}
+.contact-pop-up-step-2,
+.contact-pop-up-step-3,
+.contact-pop-up-complete {
+  background-color: var(--color-white);
+  padding: 7rem 4rem;
+}
+
+/* Generic layout utilities used by the popup contents */
+.container,
+.container2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-24);
+  max-width: 80rem;
+}
+
+.section-title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-16);
+  max-width: 48rem;
+}
+
+.tagline-wrapper { display: flex; align-items: center; }
+.tagline { position: relative; line-height: 150%; font-weight: 600; }
+
+.content,
+.content2 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-24);
+}
+.content2 { font-size: var(--fs-48); }
+
+.heading { align-self: stretch; position: relative; line-height: 120%; }
+.text { align-self: stretch; position: relative; line-height: 150%; font-size: var(--fs-18); }
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.125rem;
+  max-width: 35rem;
+  text-align: left;
+  font-size: var(--fs-14);
+}
+
+/* Progress / loader */
+.progress { align-self: stretch; display: flex; flex-direction: column; align-items: flex-start; gap: var(--gap-16); color: var(--color-lightsteelblue); font-family: var(--font-body); }
+.loader-text { position: relative; }
+.loader { align-self: stretch; height: var(--height-12); border-radius: var(--br-32); background-color: var(--color-ghostwhite); display: flex; flex-direction: column; align-items: flex-start; }
+
+/* progress-bar: base + step-specific width overrides below */
+.progress-bar { height: var(--height-12); border-radius: var(--br-32); background-color: var(--color-darkorchid); }
+.contact-pop-up-step-1 .progress-bar { width: 2.813rem; }
+.contact-pop-up-step-2 .progress-bar { width: 9.075rem; }
+.contact-pop-up-step-3 .progress-bar { width: 18.75rem; }
+
+/* Inputs */
+.input { width: 35rem; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: var(--gap-10); }
+.label { width: 33.5rem; position: relative; line-height: 150%; display: inline-block; }
+.text-input { align-self: stretch; height: 3.125rem; border-radius: var(--br-6); background-color: var(--color-white); border: 1px solid var(--color-gray-100); box-sizing: border-box; display: flex; align-items: center; padding: var(--padding-12); }
+.placeholder { flex: 1; position: relative; line-height: 150%; }
+
+.text-area { width: 35.125rem; height: 11.375rem; border-radius: var(--br-6); background-color: var(--color-white); border: 1px solid var(--color-black); box-sizing: border-box; display: flex; align-items: flex-start; padding: var(--padding-12); position: relative; isolation: isolate; font-size: var(--fs-16); }
+.type-your-message { flex: 1; position: relative; line-height: 150%; z-index: 0; flex-shrink: 0; }
+
+/* Checkbox groups */
+.checkbox-group,
+.checkbox-group5 { align-self: stretch; display: flex; align-items: flex-start; gap: 0.5rem; color: var(--color-black); }
+.checkbox2,
+.checkbox6 { height: 1.25rem; width: 1.25rem; position: relative; background-color: var(--color-white); border: 1px solid var(--color-black); box-sizing: border-box; overflow: hidden; flex-shrink: 0; }
+
+/* Absolute-positioned checkbox groups (step 3 specific) */
+.checkbox-group-abs,
+.checkbox-group2,
+.checkbox-group3,
+.checkbox-group4 {
+  position: absolute; left: 0; width: var(--width-560); display: flex; align-items: center; gap: var(--gap-8);
+}
+.checkbox-group-abs { top: 0; }
+.checkbox-group2 { top: 2.438rem; }
+.checkbox-group3 { top: 4.875rem; }
+.checkbox-group4 { top: 7.313rem; }
+
+/* Selects and helper icons */
+.select { width: 35.125rem; border-radius: 8px; border: var(--border-1); box-sizing: border-box; display: flex; align-items: center; padding: var(--padding-12); gap: var(--gap-16); font-size: var(--fs-16); }
+.select-one { flex: 1; position: relative; line-height: 150%; }
+.nav-icons, .nav-icons2 { overflow: hidden; flex-shrink: 0; }
+.nav-icons { height: 1.5rem; width: 1.5rem; }
+.nav-icons2 { height: 1rem; width: 1rem; }
+.vector-icon, .vector-icon2 { position: absolute; max-width: 100%; overflow: hidden; max-height: 100%; }
+.vector-icon { height: 27.92%; width: 48.33%; top: 35.51%; right: 25.79%; left: 25.88%; }
+.vector-icon2 { height: 28.13%; width: 48.13%; top: 35.51%; right: 26%; left: 25.88%; }
+
+/* Text input helpers */
+.text-input-child { align-self: stretch; width: 0.063rem; position: relative; border-right: var(--border-1); box-sizing: border-box; }
+.text-input2 { align-self: stretch; flex: 1; display: flex; align-items: center; padding: var(--padding-8) var(--padding-12); color: var(--color-gray); }
+
+/* Buttons: consolidated */
+.button-parent {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  font-size: var(--fs-16);
+  color: var(--color-white);
+  font-family: var(--font-body);
+}
+/* Specific variations */
+.button-parent--right { justify-content: flex-end; padding: var(--padding-48) 0 0; }
+.button-parent--space-between { justify-content: space-between; padding: 3rem 0 0; }
+
+.button { display: flex; align-items: flex-start; opacity: 0.3; }
+.button2, .button4 { align-self: stretch; border-radius: var(--br-6); display: flex; align-items: center; justify-content: center; padding: var(--padding-12) var(--padding-24); }
+.button2 { background-color: var(--color-black); border: 1px solid var(--color-black); }
+.button4 { background-color: var(--color-black); border: 1px solid var(--color-black); }
+.button3, .button5, .button6 { position: relative; line-height: 150%; }
+
+/* Details / complete step */
+.details { align-self: stretch; position: relative; line-height: 150%; }
+.your-details { font-weight: 600; }
+.your-name-your-email { font-weight: 500; }
+
+/* Keep any final specific overrides here if needed */
+
+/* End of simplified popup CSS */

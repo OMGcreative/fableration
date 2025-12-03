@@ -1,0 +1,126 @@
+/* buttons */
+
+.buttons {
+  	display: flex;
+  	align-items: center;
+  	flex-wrap: wrap;
+  	align-content: center;
+  	font-size: var(--fs-18);
+}
+[class*="-button"] {
+    position: relative;
+    display: flex;
+  	align-items: center;
+  	justify-content: center;
+    border-radius: 12px;
+  	padding: var(--padding-12) 1rem;
+    line-height: 145%;
+  	font-weight: 500;
+}
+.primary-button {
+  	border-radius: 12px;
+  	background-color: var(--color-black);
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	padding: var(--padding-12) 1rem;
+}
+.join-button {
+  	position: relative;
+  	line-height: 145%;
+  	font-weight: 500;
+}
+
+.secondary-button { 
+    /* background: var(--mono-gradient); */
+    color: var(--color-black);
+    border: 1px solid var(--color-black);
+}
+
+
+/* pop up */
+/* Buttons: consolidated */
+
+.button-parent {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  font-size: var(--fs-16);
+  color: var(--color-white);
+  font-family: var(--font-body);
+}
+
+/* Specific variations */
+.button-parent--right { 
+    justify-content: flex-end; 
+    padding: var(--padding-48) 0 0; 
+}
+.button-parent--space-between { 
+    justify-content: space-between; 
+    padding: 3rem 0 0; 
+}
+
+.button { 
+    opacity: 0.3; 
+}
+
+[class*="-button"] { 
+    position: relative;
+    cursor: pointer; 
+    text-decoration: none; 
+    font-weight: 600; 
+    transition: all 0.3s ease;
+}
+
+
+[class*="-button"]:hover { 
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+[class*="primary-button"]:hover,
+[class*="join-button"]:hover { 
+    background: rgba(0, 0, 0, 0.9);
+}
+
+[class*="secondary-button"]:hover { 
+    background: rgba(0, 0, 0, 0.05);
+}
+
+[class*="-button"]:hover::before { 
+    position: absolute;
+    content: '';
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* border: 2px solid red; */
+    border-radius: inherit; 
+    /* background: var(--mono-gradient); */
+    /* background: var(--purple-gradient); */
+    /* background-image: var(--brand-gradient); */
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    
+}
+
+
+.button2, .button4 { 
+    align-self: stretch; 
+    border-radius: var(--br-6); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: var(--padding-12) var(--padding-24); 
+}
+
+.button2 { 
+    background-color: var(--color-black); 
+    border: 1px solid var(--color-black); 
+}
+.button4 { 
+    background-color: var(--color-black); 
+    border: 1px solid var(--color-black); 
+}
+.button3, .button5, .button6 { 
+    position: relative; line-height: 150%; 
+}
